@@ -40,19 +40,10 @@ public class MovimientoReactiveImpl extends MovimientoUseCase implements Movimie
 	public Mono<StatusModel> updateMovimiento(Mono<MovimientoModel> m) {
 		return createOrUpdate(m, manager).onErrorResume(Mono::error);
 	}
-	
+
 	private Mono<StatusModel> createOrUpdate(Mono<MovimientoModel> m, MongoManager<MovimientoDto> manager) {
-		return m.flatMap(u -> {
-			StatusModel status = evalMovimiento(u);
-			Mono<StatusModel> result;
-			if (status != null) {
-				result = Mono.just(status);
-			} else {
-				result = manager.saveOrUpdate(Mono.just(ConverterModel.convert(u, MovimientoDto.class)))
-						.onErrorResume(Mono::error).then().cast(StatusModel.class);
-			}
-			return result;
-		}).onErrorResume(Mono::error);
+		return m.flatMap(u -> manager.saveOrUpdate(Mono.just(ConverterModel.convert(u, MovimientoDto.class)))
+				.onErrorResume(Mono::error).then().cast(StatusModel.class)).onErrorResume(Mono::error);
 	}
 
 }

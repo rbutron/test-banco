@@ -42,17 +42,8 @@ public class TarjetaReactiveImpl extends TarjetaUseCase implements TarjetaReacti
 	}
 	
 	private Mono<StatusModel> createOrUpdate(Mono<TarjetaModel> m, MongoManager<TarjetaDto> manager) {
-		return m.flatMap(u -> {
-			StatusModel status = evalTarjeta(u);
-			Mono<StatusModel> result;
-			if (status != null) {
-				result = Mono.just(status);
-			} else {
-				result = manager.saveOrUpdate(Mono.just(ConverterModel.convert(u, TarjetaDto.class)))
-						.onErrorResume(Mono::error).then().cast(StatusModel.class);
-			}
-			return result;
-		}).onErrorResume(Mono::error);
+		return m.flatMap(u -> manager.saveOrUpdate(Mono.just(ConverterModel.convert(u, TarjetaDto.class)))
+				.onErrorResume(Mono::error).then().cast(StatusModel.class)).onErrorResume(Mono::error);
 	}
 
 }

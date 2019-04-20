@@ -42,17 +42,8 @@ public class UserReactiveImpl extends UserUseCase implements UserReactive {
 	}
 
 	private Mono<StatusModel> createOrUpdate(Mono<UserModel> m, MongoManager<UserDto> manager) {
-		return m.flatMap(u -> {
-			StatusModel status = evalUser(u);
-			Mono<StatusModel> result;
-			if (status != null) {
-				result = Mono.just(status);
-			} else {
-				result = manager.saveOrUpdate(Mono.just(ConverterModel.convert(u, UserDto.class)))
-						.onErrorResume(Mono::error).then().cast(StatusModel.class);
-			}
-			return result;
-		}).onErrorResume(Mono::error);
+		return m.flatMap(u -> manager.saveOrUpdate(Mono.just(ConverterModel.convert(u, UserDto.class)))
+				.onErrorResume(Mono::error).then().cast(StatusModel.class)).onErrorResume(Mono::error);
 	}
 
 }

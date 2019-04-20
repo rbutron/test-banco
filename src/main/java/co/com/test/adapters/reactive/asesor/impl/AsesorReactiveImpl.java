@@ -40,19 +40,10 @@ public class AsesorReactiveImpl extends AsesorUseCase implements AsesorReactive 
 	public Mono<StatusModel> updateAsesor(Mono<AsesorModel> m) {
 		return createOrUpdate(m, manager).onErrorResume(Mono::error);
 	}
-	
+
 	private Mono<StatusModel> createOrUpdate(Mono<AsesorModel> m, MongoManager<AsesorDto> manager) {
-		return m.flatMap(u -> {
-			StatusModel status = evalAsesor(u);
-			Mono<StatusModel> result;
-			if (status != null) {
-				result = Mono.just(status);
-			} else {
-				result = manager.saveOrUpdate(Mono.just(ConverterModel.convert(u, AsesorDto.class)))
-						.onErrorResume(Mono::error).then().cast(StatusModel.class);
-			}
-			return result;
-		}).onErrorResume(Mono::error);
+		return m.flatMap(u -> manager.saveOrUpdate(Mono.just(ConverterModel.convert(u, AsesorDto.class)))
+				.onErrorResume(Mono::error).then().cast(StatusModel.class)).onErrorResume(Mono::error);
 	}
 
 }

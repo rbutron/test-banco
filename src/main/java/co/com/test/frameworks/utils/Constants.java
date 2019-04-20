@@ -29,30 +29,7 @@ public class Constants {
 	public static final String MOVIMIENTODELETE = CONTEXTAPP.concat("api/movimiento/delete/{id}");
 	public static final String MOVIMIENTOCONSULT = CONTEXTAPP.concat("api/movimiento/consult");
 	
-	public static final String NOMBRE = "^[a-zA-ZâãäåæçèéêëìíîïðñòóôõøùúûüýþÿıÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕØÙÚÛÜÝÞŸı ]{0,20}$";
-	public static final String DIRECCION = "^[0-9a-zA-ZâãäåæçèéêëìíîïðñòóôõøùúûüýþÿıÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕØÙÚÛÜÝÞŸı #.]{0,100}$";
-	public static final String CIUDAD = "^[a-zA-ZâãäåæçèéêëìíîïðñòóôõøùúûüýþÿıÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕØÙÚÛÜÝÞŸı]{0,30}$";
-	public static final String TELEFONO = "^[0-9]{0,20}$";
-	public static final String TARJETA = "^[0-9]{0,16}$";
-	public static final String CCV = "^[0-9]{3,4}$";
-	public static final String DESCRIPCION = "^[a-zA-ZâãäåæçèéêëìíîïðñòóôõøùúûüýþÿıÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕØÙÚÛÜÝÞŸı ]{1,100}$";
-	public static final String DEFAULT = "^[0-9a-zA-ZâãäåæçèéêëìíîïðñòóôõøùúûüýþÿıÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕØÙÚÛÜÝÞŸı .,;¿?]{1,50}$";
-	public static final String MONTO = "^[0-9.]{0,12}$";
-	
 	public static final String MSGSAVE = "Se registro correctamente";
-	
-	public static final String MSGNOMBRE = "Asegúrese de que el NOMBRE este bien escrito [Tamaño 1-50, solo letras sin acento]";
-	public static final String MSGDIRECCION = "Asegúrese de que la DIRECCION este bien escrito [Tamaño 1-100, solo letras, numeros y carateres especiales como: # .]";
-	public static final String MSGCIUDAD = "Asegúrese de que la CIUDAD este bien escrito [Tamaño 1-30, solo letras]";
-	public static final String MSGTELEFONO = "Asegúrese de que el TELEFONO este bien escrito [Tamaño 1-20, solo numeros]";
-	public static final String MSGDESCRIPCION = "Asegúrese de que la DESCRIPCION este bien escrito [Tamaño 1-100, solo letras, numeros y especiales: . , ; ¿ ?]";
-	public static final String MSGMONTO = "Asegúrese de que el MONTO este bien escrito [Tamaño 1-12, solo numeros]";
-	public static final String MSGTIPOTARJETA = "Asegúrese de que el TIPO DE LA TARJETA este bien escrito [Tamaño 1-50, solo letras]";
-	public static final String MSGNUMTARJETA = "Asegúrese de que el NUMERO DE LA TARJETA este bien escrito [Tamaño 1-16, solo numeros]";
-	public static final String MSGCCV = "Asegúrese de que el CCV este bien escrito [Tamaño 3-4, solo numeros]";
-	
-	
-	
 	
 	private Constants () {}
 
