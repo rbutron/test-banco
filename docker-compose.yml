@@ -1,0 +1,10 @@
+version: '2.3'
+
+services:
+  spring:
+    hostname: localhost
+    container_name: spring-container
+    build: .
+    ports:
+      - 7777:7777
+        
